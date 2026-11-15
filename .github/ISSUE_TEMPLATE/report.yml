@@ -1,0 +1,75 @@
+name: Report a mistake or near miss
+description: Share an error, or one you nearly made, from actuarial reporting. Your report will be public.
+title: "[Report] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for sharing a lesson. Near misses count too: an error caught before sign-off teaches the same lesson as one that reached the regulator.
+
+        > **This issue is public.** Everyone can see it as soon as you submit it, and it shows your GitHub username. To stay anonymous, [report by email](https://github.com/open-source-modelling/actuarial_safety_reporting_system#by-email-anonymous) instead.
+
+        After **[Report]** in the title, add a one-line summary, e.g. *Model silently used last quarter's yield curve*.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: "The main type of error ([definitions](https://github.com/open-source-modelling/actuarial_safety_reporting_system#categories)). Not sure? Leave it blank and we will choose one."
+      options:
+        - Data
+        - Assumptions
+        - Model
+        - Systems
+        - Process
+        - Reporting
+        - Communication
+        - Other
+    validations:
+      required: false
+
+  - type: input
+    id: framework
+    attributes:
+      label: Reporting framework
+      description: The framework or frameworks affected, or General if the lesson is not framework-specific.
+      placeholder: e.g. Solvency II, IFRS 17, US GAAP, IAS 19, local statutory
+    validations:
+      required: false
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Context (line of business, step in the process), what went wrong, and why.
+      placeholder: e.g. Quarterly valuation of life business. The cash-flow model read the risk-free rate curve from a fixed file path. The new curve was saved under a different name, so the model silently used last quarter's curve.
+    validations:
+      required: true
+
+  - type: textarea
+    id: how-to-notice
+    attributes:
+      label: How could someone notice it?
+      description: The check, reconciliation or warning sign that revealed the error, or would have.
+      placeholder: e.g. The analysis of change showed a much smaller economic variance than the movement in interest rates would suggest.
+    validations:
+      required: false
+
+  - type: textarea
+    id: how-to-prevent
+    attributes:
+      label: How can it be prevented?
+      description: The control or process change that would stop it from happening again.
+      placeholder: e.g. Have the model check each input's reference date against the valuation date and stop on a mismatch.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you submit
+      options:
+        - label: I have left out names of people, employers, clients and other companies, absolute amounts and personal data.
+          required: true
+        - label: I agree that this report may be edited, anonymised and published in the ASRS register under this repository's licence.
+          required: true
